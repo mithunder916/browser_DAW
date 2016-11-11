@@ -16,17 +16,17 @@ var audioSettings = {
 
 //defines properties of nx elements
 nx.onload = function(){
-  // [drumMatrix, synthMatrix].forEach(matrix => {
-  //   matrix.col = 16;
-  //   matrix.row = 3;
-  //   matrix.init();
-  // })
+  [bassMatrix, synthMatrix].forEach(matrix => {
+    matrix.col = 16;
+    matrix.row = 8;
+    matrix.init();
+  })
   drumMatrix.col = 16;
   drumMatrix.row = 3;
   drumMatrix.init();
-  synthMatrix.col = 16;
-  synthMatrix.row = 8;
-  synthMatrix.init();
+  // synthMatrix.col = 16;
+  // synthMatrix.row = 8;
+  // synthMatrix.init();
   // nx.labelSize(70);
   drumVolume.setNumberOfSliders(3)
 }
@@ -61,6 +61,7 @@ function octaveMod(rootFreq){
     default: console.log('octaveMod')
   }
 }
+
 // needs to check octave
 keySelector.onchange = function(){
   audioSettings.rootFreq = octaveMod(Number($('#keySelector option:selected').val()));
@@ -153,5 +154,5 @@ $('#startButton').on('click', function(){
 
 $('#stopButton').on('click', function(){
   Tone.Transport.stop();
-  [drumMatrix, synthMatrix].forEach(matrix => matrix.stop())
+  [drumMatrix, synthMatrix, bassMatrix].forEach(matrix => matrix.stop())
 })
