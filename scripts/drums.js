@@ -16,16 +16,6 @@ var drums = new Tone.MultiPlayer({
 			fadeOut : 0.1,
 		}).toMaster();
 
-var numSeqPasses = 0;
-
-var loop = new Tone.Sequence(function(time, col) {
-  triggerDrums(drumMatrix, time, col);
-  if (col === 15) {
-      numSeqPasses++;
-      realignView(drumMatrix);
-  }
-}, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "16n");
-
 function triggerDrums(drumMatrix, time, col) {
     var column = drumMatrix.matrix[col];
     for (var i = 0; i < column.length; i++) {
@@ -40,8 +30,4 @@ function triggerDrums(drumMatrix, time, col) {
       }
     }
     drumMatrix.place = col;
-}
-
-function realignView(matrix) {
-  matrix.sequence(Tone.Transport.bpm.value * 4)
 }

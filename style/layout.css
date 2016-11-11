@@ -4,6 +4,12 @@
   float: left;
 }
 
+#synthMatrix {
+  height: 200px;
+  width: 800px;
+  float: left;
+}
+
 #tempo {
   width: 100px;
   height: 170px;
@@ -25,6 +31,61 @@
   box-sizing: content-box;*/
 }
 
+.container {
+  float: left;
+  position: relative;
+}
+
+.container label {
+  position: absolute;
+  left: 5px;
+}
+
+.container select {
+  position: absolute;
+  left: 50px;
+}
+
+.container button {
+  position: absolute;
+  left: 5px;
+  top: 130px;
+}
+
+#modeLabel {
+  top: 10px;
+}
+
+#modeSelector {
+}
+
+#keyLabel {
+  top: 50px;
+}
+
+#keySelector {
+  top: 40px;
+}
+
+#accidentalLabel {
+  top: 90px;
+}
+
+#accidentalSelector {
+  top: 80px;
+  left: 90px;
+}
+
+#octaveLabel {
+  top: 130px;
+}
+
+#octaveUp {
+  left: 60px;
+}
+#octaveDown {
+  left: 90px;
+}
 .startbuttons {
   clear: left;
 }

@@ -8,7 +8,9 @@
     <script type="text/javascript" src="/tone/Tone.js"></script>
     <script type="text/javascript" src="/scripts/interface.js"></script>
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="./scripts/audio.js"></script>
+    <script type="text/javascript" src="./scripts/drums.js"></script>
+    <script type="text/javascript" src="./scripts/synth.js"></script>
+    <script type="text/javascript" src="./scripts/loop.js"></script>
   </head>
   <body>
     <div>
@@ -20,10 +22,54 @@
     </div>
     <div>
     <canvas nx="dial" id="tempo" label="Tempo" min="60" max="220"></canvas>
-
     </div>
-    <!-- <canvas nx="matrix" id="bassMatrix" label="Bass"></canvas>
-    <canvas nx="matrix" id="synthMatrix" label="Synth"></canvas> -->
+
+    <!-- <canvas nx="matrix" id="bassMatrix" label="Bass"></canvas> -->
+    <canvas nx="matrix" id="synthMatrix" label="Synth"></canvas>
+    <!-- <canvas nx="select" id="modeSelector" choices="major,dorian,phrygian,lydian,mixolydian,minor,locrian"></canvas> -->
+    <div class="container">
+      <label for="modeSelector" id="modeLabel">Scale:</label>
+      <select id="modeSelector" name="Scale">
+        <option>major</option>
+        <option>dorian</option>
+        <option>phyrgian</option>
+        <option>lydian</option>
+        <option>mixolydian</option>
+        <option>minor</option>
+        <option>locrian</option>
+      </select>
+      <label for="keySelector" id="keyLabel">Key:</label>
+      <select id="keySelector" name="Key">
+        <option value="220.0">A</option>
+        <option value="246.94">B</option>
+        <option value="261.63">C</option>
+        <option value="293.66">D</option>
+        <option value="329.63">E</option>
+        <option value="349.23">F</option>
+        <option value="392.00">G</option>
+      </select>
+      <label for="accidentalSelector" id="accidentalLabel">Accidentals:</label>
+      <select id="accidentalSelector" name="Accidentals">
+        <option>none</option>
+        <option>#</option>
+        <option>b</option>
+      </select>
+      <label for="octaveUp" id="octaveLabel">Octave:</label>
+      <button type="button" name="octaveUp" id="octaveUp">+</button>
+      <button type="button" name="octaveDown" id="octaveDown">-</button>
+      <!-- <label for="octaveSelector" id="octaveLabel">Octave:</label>
+      <select id="octaveSelector" name="Octaves">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+      </select> -->
+    </div>
+
     <div class='startbuttons'>
       <button type="button" name="start" id="startButton">START</button>
       <button type="button" name="stop" id="stopButton">STOP</button>
