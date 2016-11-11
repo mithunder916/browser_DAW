@@ -1,0 +1,18 @@
+{
+  "name": "browser_daw",
+  "version": "1.0.0",
+  "description": "Stackathon project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mithun",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "nodemon": "^1.11.0",
+    "tone": "^0.8.0"
+  }
+}
