@@ -3,6 +3,9 @@ var analyser = context.createAnalyser();
 
 // object within which settings are store
 var audioSettings = {
+  numColumns: 15,
+  sequenceArray: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  loopCounter: 0,
   hihat: "0",
   snare: "0",
   kick: "0",
@@ -25,14 +28,13 @@ var audioSettings = {
 
 //defines properties of nx elements
 nx.onload = function(){
-  [bassMatrix, synthMatrix].forEach(matrix => {
-    matrix.col = 16;
+  [bassMatrix, synthMatrix, drumMatrix].forEach(matrix => {
+    matrix.col = audioSettings.numColumns +1;
     matrix.row = 8;
   })
   synthMatrix.init();
   bassMatrix.colors.accent = "#58C278"
   bassMatrix.init();
-  drumMatrix.col = 16;
   drumMatrix.row = 3;
   drumMatrix.colors.accent = "#87DEFF";
   drumMatrix.init();
@@ -190,6 +192,32 @@ kickSelector.onclick = function(e){
   audioSettings.kick = kickSelector.val.index.toString();
 }
 
+//subdivisionSelector changes the number of columns for the matrices
+// CHANGING columns to 8 breaks it
+var mainLoop;
+subdivisionSelector.onchange = function(){
+  // loop.stop();
+  // Tone.Transport.stop();
+  $('#stopButton').click();
+  audioSettings.numColumns = Number($('#subdivisionSelector option:selected').val())
+  audioSettings.sequenceArray = []
+  for (var i=0;i<audioSettings.numColumns;i++){
+    audioSettings.sequenceArray.push(i)
+  }
+  columnChanger();
+  // loop.removeAll();
+  // audioSettings.sequenceArray.forEach((event, index) => {
+  //   loop.add(index, event)
+  // })
+}
+
+function columnChanger(){
+  [bassMatrix, synthMatrix, drumMatrix].forEach(matrix => {
+    matrix.col = audioSettings.numColumns + 1;
+    matrix.init();
+  })
+}
+
 // changes global tempo when tempo dial changes
 tempo.onmouseup = function(){
   Tone.Transport.bpm.value = tempo.val.value;
@@ -220,7 +248,15 @@ volume.onmousedown = function(){
 
 $('#startButton').on('click', function(){
   Tone.Transport.start();
-  loop.start()
+  if (audioSettings.loopCounter < 1) {
+    loop.start();
+    audioSettings.loopCounter++;
+  }
+  else {
+    mainLoop = loopMaker();
+      console.log("MAINLOOP", mainLoop)
+    mainLoop.start();
+  }
 })
 
 $('#stopButton').on('click', function(){

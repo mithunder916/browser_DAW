@@ -140,6 +140,16 @@ body {
   left: 393px;
 }
 
+#subdivisionSelector {
+  float: right;
+}
+
+#subdivisionLabel {
+  position: absolute;
+  left: 1020px;
+  top: 620px;
+}
+
 .startbuttons {
   clear: left;
 }

@@ -5,7 +5,7 @@ var loop = new Tone.Sequence(function(time, col) {
   triggerSynth(synthMatrix, time, col);
   triggerBass(bassMatrix, time, col)
 
-  if (col === 15) {
+  if (col === audioSettings.numColumns) {
       numSeqPasses++;
       realignView(drumMatrix);
       realignView(synthMatrix);
@@ -15,4 +15,21 @@ var loop = new Tone.Sequence(function(time, col) {
 
 function realignView(matrix) {
   matrix.sequence(Tone.Transport.bpm.value * 4)
+}
+
+function loopMaker(){
+  var mainLoop = new Tone.Sequence(function(time, col) {
+    triggerDrums(drumMatrix, time, col);
+    triggerSynth(synthMatrix, time, col);
+    triggerBass(bassMatrix, time, col)
+
+    if (col === audioSettings.numColumns) {
+      numSeqPasses++;
+      realignView(drumMatrix);
+      realignView(synthMatrix);
+      realignView(bassMatrix);
+    }
+  }, audioSettings.sequenceArray, "16n");
+
+  return mainLoop;
 }
