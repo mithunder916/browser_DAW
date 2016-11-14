@@ -1,3 +1,12 @@
+* {
+  font-family: "open sans";
+}
+
+body {
+  background-color: #FFF5E7;
+  font-family: "open sans";
+}
+
 #drumMatrix {
   height: 200px;
   width: 800px;
@@ -27,7 +36,6 @@
 #volume {
   width: 100px;
   height: 170px;
-  /*clear: left;*/
   float: right;
 }
 
@@ -67,14 +75,14 @@
 }
 
 #modeLabel {
-  top: 10px;
+  top: 7px;
 }
 
 #modeSelector {
 }
 
 #keyLabel {
-  top: 50px;
+  top: 47px;
 }
 
 #keySelector {
@@ -82,23 +90,23 @@
 }
 
 #accidentalLabel {
-  top: 90px;
+  top: 87px;
 }
 
 #accidentalSelector {
   top: 80px;
-  left: 90px;
+  left: 97px;
 }
 
 #octaveLabel {
-  top: 130px;
+  top: 128px;
 }
 
 #octaveUp {
-  left: 60px;
+  left: 65px;
 }
 #octaveDown {
-  left: 90px;
+  left: 95px;
 }
 
 .effectButtons {
@@ -124,7 +132,7 @@
 
 #chorusSelect {
   top: 22px;
-  left: 320px;
+  left: 325px;
 }
 
 #freeverbSelect {

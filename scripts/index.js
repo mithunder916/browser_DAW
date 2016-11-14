@@ -27,16 +27,36 @@ nx.onload = function(){
   [bassMatrix, synthMatrix].forEach(matrix => {
     matrix.col = 16;
     matrix.row = 8;
-    matrix.init();
   })
+  synthMatrix.init();
+  bassMatrix.colors.accent = "#58C278"
+  bassMatrix.init();
   drumMatrix.col = 16;
   drumMatrix.row = 3;
+  console.log(tempo)
+  drumMatrix.colors.accent = "#87DEFF";
   drumMatrix.init();
-  // synthMatrix.col = 16;
-  // synthMatrix.row = 8;
-  // synthMatrix.init();
-  // nx.labelSize(70);
+  drumVolume.colors.accent = "#35C9FF";
   drumVolume.setNumberOfSliders(3)
+
+  hiHatSelector.colors.accent = "#3BB9FF"
+  hiHatSelector.font = "open sans"
+  hiHatSelector.init();
+  snareSelector.colors.accent = "#3BB9FF"
+  snareSelector.init();
+  kickSelector.colors.accent = "#3BB9FF"
+  kickSelector.init();
+
+  volume.colors.accent = "#FFC51F"
+  tempo.colors.accent = "#FFC51F"
+  volume.init();
+  tempo.init();
+  // [hiHatSelector, snareSelector, kickSelector].forEach(tab => {
+  //   console.log("TAB", tab)
+  //   tab.colors.accent = "#3891FF";
+  //   tab.init();
+  // })
+  console.log(drumMatrix)
 }
 
 //effects handlers; function takes a Tone.js effect and a button, and changes the wet signal and button color when the effect is turned on/off
@@ -45,7 +65,7 @@ function effectHandler(effect, effectSelector){
   if (audioSettings.effects[effectString] === "off"){
     effect.wet.value = 0.8;
     audioSettings.effects[effectString] = "on";
-    effectSelector.style.backgroundColor = 'blue';
+    effectSelector.style.backgroundColor = '#ff5500';
   } else {
     effect.wet.value = 0;
     audioSettings.effects[effectString] = "off"
@@ -132,6 +152,7 @@ octaveDown.onclick = function(){
 }
 
 drumVolume.onmouseup = function(e){
+  console.log("VOL", drumVolume)
   audioSettings.hihatvol = drumVolume.val[0] * 5;
   audioSettings.snarevol = drumVolume.val[1] * 5;
   audioSettings.kickvol = drumVolume.val[2] * 5;
