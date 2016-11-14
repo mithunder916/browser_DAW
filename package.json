@@ -4,7 +4,7 @@
   "description": "Stackathon project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/app.js",
+    "start": "node server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mithun",
@@ -14,5 +14,8 @@
     "jquery": "^3.1.1",
     "nodemon": "^1.11.0",
     "tone": "^0.8.0"
+  },
+  "engines": {
+    "node": "6.7.0"
   }
 }
