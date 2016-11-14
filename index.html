@@ -21,9 +21,9 @@
       <canvas nx="tabs" class="drumSelector" id="kickSelector"></canvas>
       <canvas nx="multislider" id="drumVolume" width="300" height="160"></canvas>
     </div>
-    <div>
+    <!-- <div>
     <canvas nx="dial" id="tempo" label="Tempo" min="60" max="220"></canvas>
-    </div>
+    </div> -->
     <canvas nx="matrix" id="synthMatrix" label="Synth"></canvas>
     <div class="container">
       <label for="modeSelector" id="modeLabel">Scale:</label>
@@ -55,6 +55,17 @@
       <label for="octaveUp" id="octaveLabel">Octave:</label>
       <button type="button" name="octaveUp" id="octaveUp">+</button>
       <button type="button" name="octaveDown" id="octaveDown">-</button>
+      <div class="effectButtons">
+        <button type="button" id="bitcrusherSelect">Bitcrusher</button>
+        <button type="button" id="freeverbSelect">Reverb</button>
+        <button type="button" id="autofilterSelect">AutoFilter</button>
+        <button type="button" id="phaserSelect">Phaser</button>
+        <button type="button" id="chorusSelect">Chorus</button>
+      </div>
+    </div>
+    <div>
+    <canvas nx="dial" id="volume" label="Volume" min="-24" max="6"></canvas>
+    <canvas nx="dial" id="tempo" label="Tempo" min="60" max="220"></canvas>
     </div>
     <canvas nx="matrix" id="bassMatrix" label="Bass Synth"></canvas>
 

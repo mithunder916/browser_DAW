@@ -11,7 +11,7 @@
 }
 
 #bassMatrix {
-  clear: both;
+  clear: left;
   float: left;
   height: 200px;
   width: 800px;
@@ -21,6 +21,13 @@
   width: 100px;
   height: 170px;
   clear: both;
+  float: right;
+}
+
+#volume {
+  width: 100px;
+  height: 170px;
+  /*clear: left;*/
   float: right;
 }
 
@@ -93,6 +100,43 @@
 #octaveDown {
   left: 90px;
 }
+
+.effectButtons {
+  position: absolute;
+  top: 170px;
+  right: 240px;
+}
+
+#bitcrusherSelect {
+  top: 0px;
+  left: 245px;
+}
+
+#autofilterSelect {
+  top: 0px;
+  left: 320px;
+}
+
+#phaserSelect {
+  top: 0px;
+  left: 393px;
+}
+
+#chorusSelect {
+  top: 22px;
+  left: 320px;
+}
+
+#freeverbSelect {
+  top: 22px;
+  left: 393px;
+}
+
 .startbuttons {
   clear: left;
+}
+
+.startbuttons button {
+  height: 40px;
+  width: 70px;
 }

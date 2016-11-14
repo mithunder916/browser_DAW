@@ -10,8 +10,16 @@ var audioSettings = {
   snarevol: 5,
   kickvol: 5,
   rootFreq: 220.0,
+  bassFreq: 55.0,
   currentScale: modeFunctions.major,
-  currentOctave: 3
+  currentOctave: 3,
+  effects: {
+    bitcrusher: "off",
+    freeverb: "off",
+    autofilter: "off",
+    phaser: "off",
+    chorus: "off"
+  }
 }
 
 //defines properties of nx elements
@@ -31,23 +39,57 @@ nx.onload = function(){
   drumVolume.setNumberOfSliders(3)
 }
 
+//effects handlers; function takes a Tone.js effect and a button, and changes the wet signal and button color when the effect is turned on/off
+function effectHandler(effect, effectSelector){
+  let effectString = `${effect}`.toLowerCase();
+  if (audioSettings.effects[effectString] === "off"){
+    effect.wet.value = 0.8;
+    audioSettings.effects[effectString] = "on";
+    effectSelector.style.backgroundColor = 'blue';
+  } else {
+    effect.wet.value = 0;
+    audioSettings.effects[effectString] = "off"
+    effectSelector.style.backgroundColor = 'white'
+  }
+}
+
+bitcrusherSelect.onclick = function(){
+  effectHandler(bitcrusher, bitcrusherSelect)
+}
+
+freeverbSelect.onclick = function(){
+  effectHandler(freeverb, freeverbSelect)
+}
+
+autofilterSelect.onclick = function(){
+  effectHandler(autofilter, autofilterSelect)
+}
+
+phaserSelect.onclick = function(){
+  effectHandler(phaser, phaserSelect)
+}
+
+chorusSelect.onclick = function(){
+  effectHandler(chorus, chorusSelect)
+}
+
 function accidentalChecker(){
   if ($('#accidentalSelector option:selected').val() === '#') {
     audioSettings.rootFreq *= semiToneRatio;
-    synthNotes = audioSettings.currentScale(audioSettings.rootFreq, synthNotes);
-  }
-  else if ($('#accidentalSelector option:selected').val() === 'b') {
+    audioSettings.bassFreq *= semiToneRatio;
+  } else if ($('#accidentalSelector option:selected').val() === 'b') {
     audioSettings.rootFreq /= semiToneRatio;
-    synthNotes = audioSettings.currentScale(audioSettings.rootFreq, synthNotes);
+    audioSettings.bassFreq /= semiToneRatio;
   }
-  else {
-    synthNotes = audioSettings.currentScale(audioSettings.rootFreq, synthNotes);
-  }
+
+  synthNotes = audioSettings.currentScale(audioSettings.rootFreq, synthNotes);
+  bassNotes = audioSettings.currentScale(audioSettings.bassFreq, bassNotes);
 }
 
 modeSelector.onchange = function(){
   audioSettings.currentScale = modeFunctions[$('#modeSelector option:selected').val()];
-  synthNotes = audioSettings.currentScale(audioSettings.rootFreq, synthNotes)
+  synthNotes = audioSettings.currentScale(audioSettings.rootFreq, synthNotes);
+  bassNotes = audioSettings.currentScale(audioSettings.bassFreq, bassNotes);
 }
 
 function octaveMod(rootFreq){
@@ -65,8 +107,8 @@ function octaveMod(rootFreq){
 // needs to check octave
 keySelector.onchange = function(){
   audioSettings.rootFreq = octaveMod(Number($('#keySelector option:selected').val()));
+  audioSettings.bassFreq = audioSettings.rootFreq / 4;
   accidentalChecker();
-  console.log(audioSettings.rootFreq, audioSettings.currentOctave)
 }
 
 accidentalSelector.onchange = function (){
@@ -114,23 +156,6 @@ snareSelector.onclick = function(e){
 kickSelector.onclick = function(e){
   audioSettings.kick = kickSelector.val.index.toString();
 }
-// [hiHatSelector, snareSelector, kickSelector]forEach(selector => {
-//   selector.onclick = function(e){
-//     audioSettings.
-//   }
-// })
-
-// var vol0, vol1, vol2, vol3, vol4, vol5 = 0;
-// drumVolume.onmouseup = function(e){
-//   drumVolume.val.forEach((sliderValue, index) => {
-//     var volume = `vol${index}`;
-//     volume = sliderValue
-//     console.log(volume)
-//   })
-//   console.log("VOL0", vol0)
-//   // console.log(drumVolume.val)
-//
-// }
 
 // changes global tempo when tempo dial changes
 tempo.onmouseup = function(){
@@ -143,6 +168,21 @@ tempo.onmousedown = function(){
   $('#tempo').bind('mouseleave', function (){
     $('body').one('mouseup', function () {
       $('#tempo').mouseup()
+    })
+  })
+}
+
+volume.onmouseup = function(){
+  console.log("VOLUME", Tone.Master.volume.value)
+  Tone.Master.volume.value = volume.val.value;
+  // console.log("VOLUME", Tone.Master.volume)
+  $('#volume').unbind('mouseleave');
+}
+
+volume.onmousedown = function(){
+  $('#volume').bind('mouseleave', function (){
+    $('body').one('mouseup', function () {
+      $('#volume').mouseup()
     })
   })
 }
