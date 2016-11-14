@@ -144,6 +144,12 @@ body {
   clear: left;
 }
 
+#bassVolume {
+  position: absolute;
+  top: 470px;
+  left: 815px;
+}
+
 .startbuttons button {
   height: 40px;
   width: 70px;

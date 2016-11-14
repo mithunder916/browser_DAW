@@ -9,6 +9,7 @@ var audioSettings = {
   hihatvol: 5,
   snarevol: 5,
   kickvol: 5,
+  bassvol: 3,
   rootFreq: 220.0,
   bassFreq: 55.0,
   currentScale: modeFunctions.major,
@@ -33,12 +34,12 @@ nx.onload = function(){
   bassMatrix.init();
   drumMatrix.col = 16;
   drumMatrix.row = 3;
-  console.log(tempo)
   drumMatrix.colors.accent = "#87DEFF";
   drumMatrix.init();
   drumVolume.colors.accent = "#35C9FF";
   drumVolume.setNumberOfSliders(3)
-
+  bassVolume.colors.accent = "#58C278";
+  bassVolume.init()
   hiHatSelector.colors.accent = "#3BB9FF"
   hiHatSelector.font = "open sans"
   hiHatSelector.init();
@@ -56,7 +57,6 @@ nx.onload = function(){
   //   tab.colors.accent = "#3891FF";
   //   tab.init();
   // })
-  console.log(drumMatrix)
 }
 
 //effects handlers; function takes a Tone.js effect and a button, and changes the wet signal and button color when the effect is turned on/off
@@ -152,7 +152,6 @@ octaveDown.onclick = function(){
 }
 
 drumVolume.onmouseup = function(e){
-  console.log("VOL", drumVolume)
   audioSettings.hihatvol = drumVolume.val[0] * 5;
   audioSettings.snarevol = drumVolume.val[1] * 5;
   audioSettings.kickvol = drumVolume.val[2] * 5;
@@ -163,6 +162,19 @@ drumVolume.onmousedown = function(){
   $('#drumVolume').bind('mouseleave', function (){
     $('body').one('mouseup', function () {
       $('#drumVolume').mouseup()
+    })
+  })
+}
+
+bassVolume.onmouseup = function(){
+  bassGain.volume.value = bassVolume.val.value;
+  $('#bassVolume').unbind('mouseleave');
+}
+
+bassVolume.onmousedown = function(){
+  $('#bassVolume').bind('mouseleave', function (){
+    $('body').one('mouseup', function () {
+      $('#bassVolume').mouseup()
     })
   })
 }
