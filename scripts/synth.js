@@ -109,7 +109,7 @@ polySynth.chain(bitcrusher, autofilter, phaser, chorus, freeverb, Tone.Master);
 
 // initializes with major scale from root A3
 var synthNotes = modeFunctions.major(220.0, synthNotes);
-console.log("STARTING NOTES", synthNotes)
+// console.log("STARTING NOTES", synthNotes)
 
 function triggerSynth(synthMatrix, time, col) {
     var column = synthMatrix.matrix[col];

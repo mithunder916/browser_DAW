@@ -173,9 +173,7 @@ tempo.onmousedown = function(){
 }
 
 volume.onmouseup = function(){
-  console.log("VOLUME", Tone.Master.volume.value)
   Tone.Master.volume.value = volume.val.value;
-  // console.log("VOLUME", Tone.Master.volume)
   $('#volume').unbind('mouseleave');
 }
 

@@ -1,6 +1,6 @@
 // mess with this! don't use the same one
 var bassSynth = new Tone.MonoSynth({
-    "volume": -4,
+    "volume": -1,
     filter:{
         Q: 2,
         type:"lowshelf",
