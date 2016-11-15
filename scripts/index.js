@@ -26,13 +26,13 @@ var audioSettings = {
 //defines properties of nx elements
 nx.onload = function(){
   [bassMatrix, synthMatrix].forEach(matrix => {
-    matrix.col = 16;
+    matrix.col = 32;
     matrix.row = 8;
   })
   synthMatrix.init();
   bassMatrix.colors.accent = "#58C278"
   bassMatrix.init();
-  drumMatrix.col = 16;
+  drumMatrix.col = 32;
   drumMatrix.row = 3;
   drumMatrix.colors.accent = "#87DEFF";
   drumMatrix.init();
